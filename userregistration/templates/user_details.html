@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Details</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <h3>User Details</h3>
+
+    <table class="table table-bordered">
+
+        <tr>
+            <th>User ID</th>
+            <td>{{ user.user_id }}</td>
+        </tr>
+
+        <tr>
+            <th>Username</th>
+            <td>{{ user.username }}</td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td>{{ user.address }}</td>
+        </tr>
+
+        <tr>
+            <th>City</th>
+            <td>{{ user.city }}</td>
+        </tr>
+
+        <tr>
+            <th>State</th>
+            <td>{{ user.state }}</td>
+        </tr>
+
+        <tr>
+            <th>Full Address</th>
+            <td>{{ user.full_address }}</td>
+        </tr>
+
+        <tr>
+            <th>Aadhaar</th>
+            <td>
+                {% if user.aadhaar_file %}
+                    <a href="/media/{{ user.aadhaar_file }}" target="_blank">View</a>
+                    <a href="/media/{{ user.aadhaar_file }}" download>Download</a>
+                {% else %}
+                    Not Uploaded
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>EB Bill</th>
+            <td>
+                {% if user.eb_bill_file %}
+                    <a href="/media/{{ user.eb_bill_file }}" target="_blank">View</a>
+                    <a href="/media/{{ user.eb_bill_file }}" download>Download</a>
+                {% else %}
+                    Not Uploaded
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>Match Percentage</th>
+            <td>{{ user.match_percentage|floatformat:2 }}%</td>
+        </tr>
+
+    </table>
+
+    <a href="{% url 'search_users' %}" class="btn btn-secondary">
+        Back
+    </a>
+
+</div>
+
+</body>
+</html>

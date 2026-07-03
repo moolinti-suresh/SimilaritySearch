@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>User Registration</title>
+
+    <!-- Bootstrap CDN -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+
+<div class="container mt-5 mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+
+                    <h3 class="text-center">
+                        User Registration
+                    </h3>
+
+                </div>
+
+                <div class="card-body">
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+
+                        <div class="alert alert-success">
+
+                            {{ message }}
+
+                        </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <!-- User ID -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    User ID
+
+                                </label>
+
+                                {{ form.user_id }}
+
+                                <small class="text-danger">
+
+                                    {{ form.user_id.errors }}
+
+                                </small>
+
+                            </div>
+
+
+                            <!-- Username -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Username
+
+                                </label>
+
+                                {{ form.username }}
+
+                                <small class="text-danger">
+
+                                    {{ form.username.errors }}
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Password -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Password
+
+                            </label>
+
+                            {{ form.password }}
+
+                            <small class="text-danger">
+
+                                {{ form.password.errors }}
+
+                            </small>
+
+                        </div>
+
+
+                        <!-- Address -->
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+
+                                Address
+
+                            </label>
+
+                            {{ form.address }}
+
+                            <small class="text-danger">
+
+                                {{ form.address.errors }}
+
+                            </small>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <!-- City -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    City
+
+                                </label>
+
+                                {{ form.city }}
+
+                            </div>
+
+
+                            <!-- State -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    State
+
+                                </label>
+
+                                {{ form.state }}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <!-- Country -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    Country
+
+                                </label>
+
+                                {{ form.country }}
+
+                            </div>
+
+
+                            <!-- PIN -->
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+
+                                    PIN
+
+                                </label>
+
+                                {{ form.pin }}
+
+                                <small class="text-danger">
+
+                                    {{ form.pin.errors }}
+
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <!-- Aadhaar Upload -->
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    Aadhaar
+                                </label>
+
+                                {{ form.aadhaar_file }}
+
+                                <small class="text-danger">
+                                    {{ form.aadhaar_file.errors }}
+                                </small>
+
+                            </div>
+                       
+                            
+                            <!-- EB Bill Upload -->
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label">
+                                    EB Bill
+                                </label>
+
+                                {{ form.eb_bill_file }}
+
+                                <small class="text-danger">
+                                    {{ form.eb_bill_file.errors }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <div class="d-grid">
+
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-lg">
+
+                                Register
+
+                            </button>
+
+                        </div>
+
+                        <!-- Search Users Link -->
+                        <div class="text-center mt-3">
+                            <a href="{% url 'search_users' %}" class="text-decoration-none">
+                                Click here to search users by using the address
+                            </a>
+                        </div>
+
+                     </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const city = document.getElementById("city");
+
+const state = document.getElementById("state");
+
+
+const mapping = {
+
+    "Chennai":"Tamil Nadu",
+
+    "Bangalore":"Karnataka",
+
+    "Hyderabad":"Telangana",
+
+    "Pune":"Maharashtra"
+
+};
+
+
+city.addEventListener("change",function(){
+
+    state.value = mapping[this.value] || "";
+
+});
+
+</script>
+
+</body>
+
+</html>
